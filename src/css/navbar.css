@@ -1,0 +1,135 @@
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #242424;
+  height: 8.5vh;
+  border-bottom: grey solid 1px;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 0 10px;
+}
+
+.menu, .logo, .refresh, .listview, .settings, .logout, .profile, .search-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  -webkit-user-select: none;
+  user-select: none;
+  height: 50px;
+  width: 50px;
+  transition: background 0.3s ease;
+  position: relative;
+}
+
+.menu, .refresh, .listview, .settings, .logout, .profile, .search-icon {
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+}
+
+.menu:hover, .refresh:hover, .listview:hover, .settings:hover, .logout:hover, .logo:hover, .profile:hover, .search-icon:hover {
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.1)
+  );
+}
+
+.menu:focus, .menu:focus-visible {
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.1)
+  );
+}
+
+.logo {
+  margin: 0 10px;
+  cursor: pointer;
+  width: 100px;
+}
+
+.icons1 {
+  display: flex;
+  gap: 20px; 
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  position: relative;
+  margin-left: auto;
+}
+
+.icons2 {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  margin-left: auto;
+}
+
+@media (max-width: 786px) {
+  .icons1 {
+    gap: 0px;
+    margin: 0px;
+  }
+
+  .icons2 {
+    margin: 0px;
+  }
+
+  .menu {
+    margin: 0px; 
+  }
+
+  .logo { 
+    margin: 0px;
+    width: 80px;
+  }
+
+  .search-icon {
+    display: flex;
+  }
+}
+
+@media (max-width: 425px) {
+  .refresh, .settings { 
+    display: none;
+  }
+
+  .logout {
+    display: none;
+  }
+
+  .search-icon {
+    margin-left: auto;
+  }
+}
+
+.mobile-search-bar {
+  display: flex;
+  align-items: center;
+  background-color: #242424;
+  height: 8.5vh;
+  padding: 0 10px;
+  position: absolute;
+  top: 0;
+  left: 5px;
+  right: 0px;
+  z-index: 1;
+}
+
+.close-search {
+  display: flex;
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 20px;
+  margin-left: auto;
+}
