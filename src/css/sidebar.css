@@ -12,17 +12,12 @@
   background: #242424;
   height: 100vh;
   color: white;
-  width: 300px;
   display: flex;
   flex-direction: column;
 }
 
-.listitems {
-   display: flex;
-   flex-direction: column;
-   position: sticky;
-   top: 80px;
-   z-index: 10;
+.drawer-container.open {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .drawer-container.closed {
@@ -30,16 +25,30 @@
   overflow: hidden;
 }
 
-.drawer-container.open {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
 .drawer-container.closed:hover {
   width: 300px;
 }
 
-/* @media (max-width: 786px) {
+.listitems {
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 80px;
+  z-index: 10;
+}
+
+@media (max-width: 600px) {
   .drawer-container {
-    width: 75px;
+    width: 0;
+    overflow: hidden;
   }
-} */
+
+  .List-item:hover, .List-item:focus, .List-item:active {
+    border-right: none;
+    background: none;
+  }
+
+  .List-name {
+    display: none;
+  }
+}
