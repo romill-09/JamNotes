@@ -11,7 +11,7 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import ClearIcon from "@mui/icons-material/Clear";
 
-const NavBar = () => {
+const NavBar = ({ handleSidebarToggle }) => {
   const [isSearchBarVisible, setIsSearchBarVisible] = useState(true);
   const [isMobileSearchActive, setIsMobileSearchActive] = useState(false);
 
@@ -47,6 +47,7 @@ const NavBar = () => {
         aria-label="Main Menu"
         role="button"
         tabIndex="0"
+        onClick = {handleSidebarToggle}
       >
         <MenuIcon />
       </div>
