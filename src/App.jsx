@@ -6,18 +6,17 @@ import Archive from "./components/Archive";
 import Trash from "./components/Trash";
 
 function App() {
-
   return (
     <>
-    <Router>
-      <SideBar>
-        <Routes>
-          <Route path="/notes" element={<Notes />} />
-          <Route path="/archive" element={<Archive />} />
-          <Route path="/trash" element={<Trash />} />
-        </Routes>
-      </SideBar>  
-    </Router>
+      <Router>
+        <SideBar>
+          <Routes>
+            <Route path="/notes" element={<Notes />} />
+            <Route path="/archive" element={<Archive />} />
+            <Route path="/trash" element={<Trash />} />
+          </Routes>
+        </SideBar>
+      </Router>
     </>
   );
 }
