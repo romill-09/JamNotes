@@ -1,17 +1,18 @@
-.archivebox {
+.box {
    display: flex;
    flex-direction: column;
    align-items: center;
    margin-top: 20vh;
    margin-left: 550px;
 }
+
 .text {
    margin-top: 15px;
    color: rgb(128, 134, 139, 1.0);
    font-size: 22px
 }
 
-#archive {
+#icon {
    font-size: 120px;
    color: rgb(105, 104, 104, 0.3);
 }

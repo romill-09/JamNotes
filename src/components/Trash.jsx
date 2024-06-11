@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { DataContext } from '../context/DataProvider';
 import { Grid } from '@mui/material';
 import EmptyTrash from './EmptyTrash';
-import Note from './Note';
+import T1 from './TrashNote';
 
 const Trash = () => {
   const { deletedNotes } = useContext(DataContext);
@@ -14,7 +14,7 @@ const Trash = () => {
           <Grid container>
             {deletedNotes.map(note => (
               <Grid item key={note.id}>
-                <Note note={note} />
+                <T1 note={note} />
               </Grid>
             ))}
           </Grid>

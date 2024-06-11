@@ -6,7 +6,7 @@ import { NavLink } from 'react-router-dom';
 const List = ({ isSidebarOpen}) => {
    
   const Navlist = [
-    { id: 1, name: "Notes", icon: <Lightbulb />, path: "/notes" },
+    { id: 1, name: "Notes", icon: <Lightbulb />, path: "/" },
     { id: 2, name: "Archive", icon: <Archive />, path: "/archive" },
     { id: 3, name: "Trash", icon: <Trash />, path: "/trash" },
   ];

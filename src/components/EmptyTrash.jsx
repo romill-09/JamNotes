@@ -1,12 +1,12 @@
 import { DeleteOutlineOutlined as Trash } from '@mui/icons-material';
 import { Typography, Box } from '@mui/material';
-import '../css/emptytrash.css';
+import '../css/empty.css';
 
 const EmptyTrash = () => {
     return (
-        <Box className = "trashbox">
-            <Trash id="trash"/>
-            <Typography className='text'>Notes you add appear here</Typography>
+        <Box className = "box">
+            <Trash id="icon"/>
+            <Typography className='text'>Deleted notes will appear here</Typography>
         </Box>
     )
 }

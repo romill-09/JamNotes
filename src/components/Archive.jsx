@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { DataContext } from '../context/DataProvider';
 import { Grid } from '@mui/material';
 import EmptyArchive from './EmptyArchive';
-import Note from './Note';
+import ArchiveNote from './ArchiveNote';
 
 const Archive = () => {
   const { archiveNotes } = useContext(DataContext);
@@ -14,7 +14,7 @@ const Archive = () => {
           <Grid container>
             {archiveNotes.map(note => (
               <Grid item key={note.id}>
-                <Note note={note} />
+                <ArchiveNote note={note} />
               </Grid>
             ))}
           </Grid>

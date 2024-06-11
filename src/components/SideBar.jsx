@@ -1,9 +1,9 @@
-import '../css/sidebar.css';
-import NavBar from './NavBar';
-import List from './List';
+import "../css/sidebar.css";
+import NavBar from "./NavBar";
+import List from "./List";
 import { AnimatePresence, motion } from "framer-motion";
-import { useState, useEffect } from 'react';
-import { Outlet } from 'react-router-dom';
+import { useState, useEffect } from "react";
+import { Outlet } from "react-router-dom";
 
 const SideBar = ({ children }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -13,7 +13,7 @@ const SideBar = ({ children }) => {
 
   const handleSidebarToggle = () => {
     setIsSidebarOpen(!isSidebarOpen);
-    setOpenedByClick(!isSidebarOpen); 
+    setOpenedByClick(!isSidebarOpen);
   };
 
   const handleMouseEnter = () => {
@@ -38,9 +38,9 @@ const SideBar = ({ children }) => {
       }
     };
 
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
 
-    return () => window.removeEventListener('resize', handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   return (
@@ -49,7 +49,7 @@ const SideBar = ({ children }) => {
         <NavBar handleSidebarToggle={handleSidebarToggle} />
         {isSmallScreen ? (
           <div
-            className={`drawer-container ${isSidebarOpen ? 'open' : 'closed'}`}
+            className={`drawer-container ${isSidebarOpen ? "open" : "closed"}`}
             style={{
               width: isSidebarOpen ? "300px" : "0px",
               transition: "width 0.8s ease-in-out",
@@ -60,7 +60,7 @@ const SideBar = ({ children }) => {
             </div>
           </div>
         ) : (
-          <motion.div 
+          <motion.div
             animate={{
               width: isSidebarOpen || isHovered ? "300px" : "75px",
               transition: {
@@ -69,7 +69,9 @@ const SideBar = ({ children }) => {
                 damping: 11,
               },
             }}
-            className={`drawer-container ${isSidebarOpen || isHovered ? 'open' : 'closed'}`}
+            className={`drawer-container ${
+              isSidebarOpen || isHovered ? "open" : "closed"
+            }`}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
           >
@@ -78,9 +80,7 @@ const SideBar = ({ children }) => {
             </div>
           </motion.div>
         )}
-        <main className='main-content'>
-          {children}
-        </main>
+        <main className="main-content">{children}</main>
       </div>
       <Outlet />
     </>

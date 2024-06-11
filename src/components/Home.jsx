@@ -7,17 +7,18 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 const Home = () => {
   return (
+    <div className='container'>
       <Router>
-        <div className='container'>
-          <SideBar>
-            <Routes>
-              <Route path="/notes" element={<Notes />} />
-              <Route path="/archive" element={<Archive />} />
-              <Route path="/trash" element={<Trash />} />
-            </Routes>
-          </SideBar>
-        </div>
+        <SideBar>
+          <Routes>
+            <Route path="/" element={<Notes />} />
+            <Route path="/archive" element={<Archive />} />
+            <Route path="/trash" element={<Trash />} />
+          </Routes>
+        </SideBar>
       </Router>
+    </div>
+
   )
 }
 
