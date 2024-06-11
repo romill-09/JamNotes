@@ -1,0 +1,36 @@
+ .text-wrapper {
+   display: flex;
+   flex-direction: column;
+   width: 100%;
+   max-width: 600px;
+   margin-left: 360px;
+ }
+ 
+ .note-items {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   margin-top: 0px;
+   margin-left: 0px;
+ }
+ 
+ @media (max-width: 768px) {
+   .text-wrapper {
+    max-width: 200px;
+    margin-left: auto;
+   }
+ 
+   .note-items {
+     width: 100%;
+   }
+
+   .notes-container {
+      padding: 0 10px;
+      margin: 20px;
+    }
+  
+    .textcontainer {
+      padding: 8px 10px;
+    }
+ }

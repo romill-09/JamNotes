@@ -1,21 +1,31 @@
-import React from "react";
+import { useContext } from 'react';
+import { DataContext } from '../context/DataProvider';
+import { Grid } from '@mui/material';
+import EmptyArchive from './EmptyArchive';
+import Note from './Note';
 
 const Archive = () => {
+  const { archiveNotes } = useContext(DataContext);
+
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        width: "100%",
-        height: "100vh",
-        backgroundColor: "red",
-        margin: "0px 100px",
-      }}
-    >
-      Archive
-    </div>
+    <>
+      {archiveNotes.length > 0 ? (
+        <div className="note-items">
+          <Grid container>
+            {archiveNotes.map(note => (
+              <Grid item key={note.id}>
+                <Note note={note} />
+              </Grid>
+            ))}
+          </Grid>
+        </div>
+      ) : (
+          <EmptyArchive />
+      )}
+
+    </>
   );
 };
+
 
 export default Archive;

@@ -78,7 +78,7 @@ const SideBar = ({ children }) => {
             </div>
           </motion.div>
         )}
-        <main>
+        <main className='main-content'>
           {children}
         </main>
       </div>

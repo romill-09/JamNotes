@@ -10,7 +10,7 @@
 
 .drawer-container {
   background: #242424;
-  height: 100vh;
+  height: 100dvh;
   color: white;
   display: flex;
   flex-direction: column;
@@ -37,10 +37,30 @@
   z-index: 10;
 }
 
+.main-content {
+  display: flex;
+  margin-top: 8.5dvh;
+  flex-direction: column;
+  flex-grow: 1;
+  padding: 40px 50px;
+}
+
 @media (max-width: 600px) {
   .drawer-container {
     width: 0;
+    position: fixed;
     overflow: hidden;
+  }
+
+  .drawer-container.open {
+    width: 75px; /* Adjust width for the open state on mobile */
+    overflow: hidden; /* Prevent content from spilling */
+    transition: width 0.3s; /* Smooth transition */
+  }
+
+  .main-content {
+    margin-top: 80px;
+    padding: 20px; /* Optional padding for content */
   }
 
   .List-item:hover, .List-item:focus, .List-item:active {

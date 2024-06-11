@@ -1,4 +1,4 @@
-import { LightbulbOutlined as Lightbulb, ArchiveOutlined as Archive, DeleteOutlineOutlined as Delete } from '@mui/icons-material';
+import { LightbulbOutlined as Lightbulb, ArchiveOutlined as Archive, DeleteOutlineOutlined as Trash } from '@mui/icons-material';
 import '../css/list.css';
 import { AnimatePresence, motion } from "framer-motion";
 import { NavLink } from 'react-router-dom';
@@ -8,7 +8,7 @@ const List = ({ isSidebarOpen}) => {
   const Navlist = [
     { id: 1, name: "Notes", icon: <Lightbulb />, path: "/notes" },
     { id: 2, name: "Archive", icon: <Archive />, path: "/archive" },
-    { id: 3, name: "Trash", icon: <Delete />, path: "/trash" },
+    { id: 3, name: "Trash", icon: <Trash />, path: "/trash" },
   ];
 
   const showAnimation = {

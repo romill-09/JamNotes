@@ -14,7 +14,14 @@
   padding: 0 10px;
 }
 
-.menu, .logo, .refresh, .listview, .settings, .logout, .profile, .search-icon {
+.menu,
+.logo,
+.refresh,
+.listview,
+.settings,
+.logout,
+.profile,
+.search-icon {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -29,12 +36,25 @@
   position: relative;
 }
 
-.menu, .refresh, .listview, .settings, .logout, .profile, .search-icon {
+.menu,
+.refresh,
+.listview,
+.settings,
+.logout,
+.profile,
+.search-icon {
   -webkit-border-radius: 50%;
   border-radius: 50%;
 }
 
-.menu:hover, .refresh:hover, .listview:hover, .settings:hover, .logout:hover, .logo:hover, .profile:hover, .search-icon:hover {
+.menu:hover,
+.refresh:hover,
+.listview:hover,
+.settings:hover,
+.logout:hover,
+.logo:hover,
+.profile:hover,
+.search-icon:hover {
   background: linear-gradient(
     to bottom,
     rgba(255, 255, 255, 0.1),
@@ -42,7 +62,8 @@
   );
 }
 
-.menu:focus, .menu:focus-visible {
+.menu:focus,
+.menu:focus-visible {
   background: linear-gradient(
     to bottom,
     rgba(255, 255, 255, 0.1),
@@ -58,7 +79,7 @@
 
 .icons1 {
   display: flex;
-  gap: 20px; 
+  gap: 20px;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   position: relative;
@@ -84,10 +105,10 @@
   }
 
   .menu {
-    margin: 0px; 
+    margin: 0px;
   }
 
-  .logo { 
+  .logo {
     margin: 0px;
     width: 80px;
   }
@@ -97,8 +118,9 @@
   }
 }
 
-@media (max-width: 425px) {
-  .refresh, .settings { 
+@media (max-width: 426px) {
+  .refresh,
+  .settings {
     display: none;
   }
 

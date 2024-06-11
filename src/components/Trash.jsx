@@ -1,21 +1,31 @@
-import React from "react";
+import { useContext } from 'react';
+import { DataContext } from '../context/DataProvider';
+import { Grid } from '@mui/material';
+import EmptyTrash from './EmptyTrash';
+import Note from './Note';
 
 const Trash = () => {
+  const { deletedNotes } = useContext(DataContext);
+
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        width: "100%",
-        height: "100vh",
-        backgroundColor: "red",
-        margin: "150px",
-      }}
-    >
-      Trash
-    </div>
+    <>
+      {deletedNotes.length > 0 ? (
+        <div className="note-items">
+          <Grid container>
+            {deletedNotes.map(note => (
+              <Grid item key={note.id}>
+                <Note note={note} />
+              </Grid>
+            ))}
+          </Grid>
+        </div>
+      ) : (
+          <EmptyTrash />
+      )}
+
+    </>
   );
 };
+
 
 export default Trash;

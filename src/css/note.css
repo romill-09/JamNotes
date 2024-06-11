@@ -1,0 +1,26 @@
+.card-style {
+   border: 1px solid #5f6368;
+   border-radius: 8px !important;
+   width: 240px;
+   margin: 8px;
+   box-shadow: none;
+   background-color: #1e1e1e !important;
+}
+
+.card {
+   gap: 5px;
+   color: #fff;
+}
+
+.card-style .title {
+   font-weight: bold;
+   color: #fff;
+   font-size: 20px;
+}
+
+.card-style .text {
+   margin-top: 10px;
+   color: #fff;
+}
+
+
