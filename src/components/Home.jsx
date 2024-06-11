@@ -1,7 +1,7 @@
 import SideBar from './SideBar';
-import Notes from "./Notes";
-import Archive from "./Archive";
-import Trash from "./Trash";
+import Notes from "./notes/Notes";
+import Archive from "./archive/Archive";
+import Trash from "./trash/Trash";
 import '../css/home.css';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 

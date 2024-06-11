@@ -1,28 +1,29 @@
 import { Card, CardContent, CardActions, Typography } from "@mui/material";
-import { UnarchiveOutlined as Unarchive, DeleteOutlineOutlined as Delete } from "@mui/icons-material";
-import { useContext } from 'react';
-import { DataContext } from '../context/DataProvider';
-import "../css/note.css";
+import {
+  UnarchiveOutlined as Unarchive,
+  DeleteOutlineOutlined as Delete,
+} from "@mui/icons-material";
+import { useContext } from "react";
+import { DataContext } from "../../context/DataProvider";
 
 const A1 = ({ note }) => {
+  const { notes, setNotes, archiveNotes, setArchiveNotes, setDeletedNotes } =
+    useContext(DataContext);
 
-  const { notes, setNotes, archiveNotes, setArchiveNotes, setDeletedNotes } = useContext(DataContext);
-  
   const unarchiveNote = (note) => {
-    const updatedNotes = archiveNotes.filter(data => data.id !== note.id);
+    const updatedNotes = archiveNotes.filter((data) => data.id !== note.id);
     setArchiveNotes(updatedNotes);
-    setNotes(prevArr => [note, ...prevArr]);
+    setNotes((prevArr) => [note, ...prevArr]);
   };
 
   const deleteNote = (note) => {
-    const updatedNotes = archiveNotes.filter(data => data.id !== note.id);
+    const updatedNotes = archiveNotes.filter((data) => data.id !== note.id);
     setArchiveNotes(updatedNotes);
-    setDeletedNotes(prevArr => [note, ...prevArr]);
+    setDeletedNotes((prevArr) => [note, ...prevArr]);
   };
 
   return (
     <Card className="card-style">
-
       <CardContent>
         <Typography className="title">{note.title}</Typography>
         <Typography className="text">{note.text}</Typography>
@@ -34,12 +35,12 @@ const A1 = ({ note }) => {
           style={{ marginLeft: "auto", cursor: "pointer" }}
           onClick={() => unarchiveNote(note)}
         />
-        <Delete 
+        <Delete
           fontSize="small"
-          style = {{ cursor: "pointer" }}
-          onClick={() => deleteNote(note)} />
+          style={{ cursor: "pointer" }}
+          onClick={() => deleteNote(note)}
+        />
       </CardActions>
-
     </Card>
   );
 };

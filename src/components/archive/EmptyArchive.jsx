@@ -1,6 +1,6 @@
 import { ArchiveOutlined as Archive } from '@mui/icons-material';
 import { Typography, Box } from '@mui/material';
-import '../css/empty.css';
+import '../../css/empty.css';
 
 const EmptyNotes = () => {
     return (

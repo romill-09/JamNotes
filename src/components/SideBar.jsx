@@ -1,7 +1,7 @@
 import "../css/sidebar.css";
 import NavBar from "./NavBar";
 import List from "./List";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { Outlet } from "react-router-dom";
 
