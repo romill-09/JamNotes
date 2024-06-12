@@ -1,23 +1,27 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import ClearIcon from "@mui/icons-material/Clear";
+import { DataContext } from '../context/DataProvider';
 import "../css/searchbar.css";
 
 const SearchBar = () => {
   const [query, setquery] = useState("");
+  const { setSearchQuery } = useContext(DataContext);
 
   const handleClearClick = (e) => {
     e.preventDefault();
     setquery("");
+    setSearchQuery("");
   };
 
   const handleSearchClick = (e) => {
     e.preventDefault();
-    console.log(query);
+    setSearchQuery(query);
   };
 
   const handleChange = (e) => {
     setquery(e.target.value);
+    setSearchQuery(e.target.value);
   };
 
   return (

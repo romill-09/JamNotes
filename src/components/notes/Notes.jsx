@@ -7,7 +7,12 @@ import { Grid } from "@mui/material";
 import "../../css/notes.css";
 
 const Notes = () => {
-  const { notes } = useContext(DataContext);
+  const { notes, searchQuery } = useContext(DataContext);
+  
+  const filteredNotes = notes.filter(note =>
+    (note.title && note.title.toLowerCase().includes(searchQuery.toLowerCase())) ||
+    (note.text && note.text.toLowerCase().includes(searchQuery.toLowerCase()))
+  );
 
   return (
     <>
@@ -15,10 +20,10 @@ const Notes = () => {
         <TextForm />
       </div>
 
-      {notes.length > 0 ? (
+      {filteredNotes.length > 0 ? (
         <div className="note-items">
           <Grid container>
-            {notes.map((note) => (
+            {filteredNotes.map((note) => (
               <Grid item key={note.id}>
                 <Note note={note} />
               </Grid>
