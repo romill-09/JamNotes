@@ -7,7 +7,7 @@ import { useContext } from "react";
 import { DataContext } from "../../context/DataProvider";
 
 const TrashNote = ({ note }) => {
-  const { notes, setNotes, setArchiveNotes, deletedNotes, setDeletedNotes } =
+  const { setNotes, deletedNotes, setDeletedNotes } =
     useContext(DataContext);
 
   const restoreNote = (note) => {

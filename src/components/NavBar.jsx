@@ -64,7 +64,7 @@ const NavBar = ({ handleSidebarToggle }) => {
         </div>
       )}
 
-      <div className="icons1">
+      {/* <div className="icons1">
         <div className="refresh">
           <RefreshIcon />
         </div>
@@ -76,7 +76,7 @@ const NavBar = ({ handleSidebarToggle }) => {
         <div className="settings">
           <SettingsIcon />
         </div>
-      </div>
+      </div> */}
 
       <div className="icons2">
         <div className="profile">

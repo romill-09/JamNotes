@@ -7,7 +7,7 @@ import { useContext } from "react";
 import { DataContext } from "../../context/DataProvider";
 
 const A1 = ({ note }) => {
-  const { notes, setNotes, archiveNotes, setArchiveNotes, setDeletedNotes } =
+  const { setNotes, archiveNotes, setArchiveNotes, setDeletedNotes } =
     useContext(DataContext);
 
   const unarchiveNote = (note) => {
