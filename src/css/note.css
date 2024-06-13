@@ -7,11 +7,6 @@
    background-color: #1e1e1e !important;
 }
 
-.card {
-   gap: 5px;
-   color: #fff;
-}
-
 .card-style .title {
    font-weight: bold;
    color: #fff;
@@ -23,4 +18,25 @@
    color: #fff;
 }
 
-
+.cardicons {
+   display: flex;
+   justify-content: flex-end;
+   gap: 5px;
+   color: #fff;
+ }
+ 
+ .cardicons .MuiSvgIcon-root {
+   height: 35px;
+   width: 35px;
+   padding: 5px;
+   border-radius: 50%;
+   transition: background-color 0.3s ease-in-out;
+ }
+ 
+ .cardicons .MuiSvgIcon-root:hover {
+   background: linear-gradient(
+     to bottom,
+     rgba(255, 255, 255, 0.1),
+     rgba(255, 255, 255, 0.1)
+   );
+ }

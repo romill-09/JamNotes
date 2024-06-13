@@ -1,0 +1,41 @@
+.modal-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  max-height: 400px;
+  background-color: #1e1e1e;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 1px -1px 1px 1px rgba(255, 255, 255, 0.13), 0px 1px 1px 1px rgba(255, 255, 255, 0.2);
+  padding: 24px;
+  overflow: hidden;
+  outline: none;
+}
+
+.modal-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.modal-text {
+  margin-bottom: 24px;
+}
+
+.text-area-container {
+  max-height: 220px;
+  overflow-y: auto; /* Allow scrolling when content exceeds max height */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+}
+
+.text-area-container::-webkit-scrollbar {
+  display: none;
+}
+
+.modal-button {
+  display: flex;
+  justify-content: flex-end;
+}

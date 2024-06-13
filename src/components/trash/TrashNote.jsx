@@ -5,6 +5,7 @@ import {
 } from "@mui/icons-material";
 import { useContext } from "react";
 import { DataContext } from "../../context/DataProvider";
+import '../../css/note.css';
 
 const TrashNote = ({ note }) => {
   const { setNotes, deletedNotes, setDeletedNotes } =
@@ -28,14 +29,12 @@ const TrashNote = ({ note }) => {
         <Typography className="text">{note.text}</Typography>
       </CardContent>
 
-      <CardActions className="card">
+      <CardActions className="cardicons">
         <Delete
-          fontSize="small"
-          style={{ marginLeft: "auto", cursor: "pointer" }}
+          style={{ cursor: "pointer" }}
           onClick={() => deleteNote(note)}
         />
         <Restore
-          fontSize="small"
           style={{ cursor: "pointer" }}
           onClick={() => restoreNote(note)}
         />

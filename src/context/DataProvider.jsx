@@ -8,13 +8,24 @@ const DataProvider = ({ children }) => {
    const [archiveNotes, setArchiveNotes] = useState([]);
    const [deletedNotes, setDeletedNotes] = useState([]);
    const [searchQuery, setSearchQuery] = useState("");
+   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+
+   const editNote = () => {
+     setIsEditModalOpen(true);
+   };
+ 
+   const handleEditModalClose = () => {
+     setIsEditModalOpen(false);
+   };
   
   return (
      <DataContext.Provider value = {{
          notes, setNotes,
          archiveNotes, setArchiveNotes,
          deletedNotes, setDeletedNotes,
-         searchQuery, setSearchQuery
+         searchQuery, setSearchQuery,
+         isEditModalOpen, setIsEditModalOpen,
+         editNote, handleEditModalClose
       }}>
          { children }
       </DataContext.Provider>
