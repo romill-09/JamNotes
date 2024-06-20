@@ -8,7 +8,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 const Home = () => {
   return (
     <div className='container'>
-      <Router>
         <SideBar>
           <Routes>
             <Route path="/" element={<Notes />} />
@@ -16,7 +15,6 @@ const Home = () => {
             <Route path="/trash" element={<Trash />} />
           </Routes>
         </SideBar>
-      </Router>
     </div>
 
   )

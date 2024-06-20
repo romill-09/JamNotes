@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "../css/navbar.css";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
@@ -10,10 +10,24 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import LogoutIcon from "@mui/icons-material/Logout";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import ClearIcon from "@mui/icons-material/Clear";
+import { signOut, auth } from "../firebase";
 
 const NavBar = ({ handleSidebarToggle }) => {
   const [isSearchBarVisible, setIsSearchBarVisible] = useState(true);
   const [isMobileSearchActive, setIsMobileSearchActive] = useState(false);
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    setTimeout(async () => {
+      try {
+        await signOut(auth);
+        console.log("User logged out successfully");
+        navigate("/signup");
+      } catch (error) {
+        console.error("Error logging out:", error.message);
+      }
+    }, 1000);
+  };
 
   useEffect(() => {
     const handleResize = () => {
@@ -47,7 +61,7 @@ const NavBar = ({ handleSidebarToggle }) => {
         aria-label="Main Menu"
         role="button"
         tabIndex="0"
-        onClick = {handleSidebarToggle}
+        onClick={handleSidebarToggle}
       >
         <MenuIcon />
       </div>
@@ -64,27 +78,12 @@ const NavBar = ({ handleSidebarToggle }) => {
         </div>
       )}
 
-      {/* <div className="icons1">
-        <div className="refresh">
-          <RefreshIcon />
-        </div>
-
-        <div className="listview">
-          <ViewStreamIcon />
-        </div>
-
-        <div className="settings">
-          <SettingsIcon />
-        </div>
-      </div> */}
-
       <div className="icons2">
         <div className="profile">
           <PersonOutlineIcon alt="profile" />
         </div>
-
         <div className="logout">
-          <LogoutIcon />
+          <LogoutIcon onClick={handleLogout} />
         </div>
       </div>
 
