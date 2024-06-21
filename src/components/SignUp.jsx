@@ -11,7 +11,7 @@ const SignUp = () => {
       const result = await signInWithPopup(auth, provider);
       const user = result.user;
       console.log("User logged in successfully", user);
-      navigate('/notes');
+      navigate('/');
     } catch (error) {
       console.error("Error during sign-in:", error.message);
     }
