@@ -4,7 +4,7 @@ import { DataContext } from "../context/DataProvider";
 import "../css/editnotemodal.css";
 
 const EditNoteModal = ({ open, handleClose, note, isArchived }) => {
-  const { notes, setNotes, archiveNotes, setArchiveNotes } = useContext(DataContext);
+  const { updateNote } = useContext(DataContext);
   const [title, setTitle] = useState(note.title);
   const [text, setText] = useState(note.text);
 
@@ -13,20 +13,10 @@ const EditNoteModal = ({ open, handleClose, note, isArchived }) => {
     setText(note.text);
   }, [note]);
 
-  const handleSave = () => {
+  const handleSave = async () => {
     const updatedNote = { ...note, title, text };
 
-    if (isArchived) {
-      const updatedArchiveNotes = archiveNotes.map((n) =>
-        n.id === note.id ? updatedNote : n
-      );
-      setArchiveNotes(updatedArchiveNotes);
-    } else {
-      const updatedNotes = notes.map((n) =>
-        n.id === note.id ? updatedNote : n
-      );
-      setNotes(updatedNotes);
-    }
+    await updateNote(note.id, updatedNote);
 
     handleClose();
   };

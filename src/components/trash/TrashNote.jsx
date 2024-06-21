@@ -8,20 +8,9 @@ import { DataContext } from "../../context/DataProvider";
 import '../../css/note.css';
 
 const TrashNote = ({ note }) => {
-  const { setNotes, deletedNotes, setDeletedNotes } =
-    useContext(DataContext);
 
-  const restoreNote = (note) => {
-    const updatedNotes = deletedNotes.filter((data) => data.id !== note.id);
-    setDeletedNotes(updatedNotes);
-    setNotes((prevArr) => [note, ...prevArr]);
-  };
-
-  const deleteNote = (note) => {
-    const updatedNotes = deletedNotes.filter((data) => data.id !== note.id);
-    setDeletedNotes(updatedNotes);
-  };
-
+  const { restoreNoteFromTrash, deleteNoteForever } = useContext(DataContext);
+  
   return (
     <Card className="card-style">
       <CardContent>
@@ -32,11 +21,11 @@ const TrashNote = ({ note }) => {
       <CardActions className="cardicons">
         <Delete
           style={{ cursor: "pointer" }}
-          onClick={() => deleteNote(note)}
+          onClick={() => deleteNoteForever(note.id)}
         />
         <Restore
           style={{ cursor: "pointer" }}
-          onClick={() => restoreNote(note)}
+          onClick={() => restoreNoteFromTrash(note.id)}
         />
       </CardActions>
     </Card>

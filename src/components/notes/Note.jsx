@@ -10,20 +10,10 @@ import EditNoteModal from "../EditNoteModal";
 import "../../css/note.css";
 
 const Note = ({ note }) => {
-  const { notes, setNotes, setArchiveNotes, 
-          setDeletedNotes, isEditModalOpen, 
-          editNote, handleEditModalClose } = useContext(DataContext); 
+  const { deleteNote, editNote, updateNote, isEditModalOpen, handleEditModalClose } = useContext(DataContext);
 
-  const archiveNote = (note) => {
-    const updatedNotes = notes.filter((data) => data.id !== note.id);
-    setNotes(updatedNotes);
-    setArchiveNotes((prevArr) => [note, ...prevArr]);
-  };
-
-  const deleteNote = (note) => {
-    const updatedNotes = notes.filter((data) => data.id !== note.id);
-    setNotes(updatedNotes);
-    setDeletedNotes((prevArr) => [note, ...prevArr]);
+  const archiveNote = async (note) => {
+    await updateNote(note.id, { ...note, isArchived: true });
   };
 
   return (
@@ -45,7 +35,7 @@ const Note = ({ note }) => {
           />
           <Delete
             style={{ cursor: "pointer" }}
-            onClick={() => deleteNote(note)}
+            onClick={() => deleteNote(note.id)}
           />
         </CardActions>
       </Card>

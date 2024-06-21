@@ -1,31 +1,21 @@
 import { useState, useRef, useContext } from "react";
 import { TextField, ClickAwayListener } from "@mui/material";
 import { DataContext } from '../context/DataProvider';
-import { v4 as uuid } from 'uuid';
 import '../css/textform.css';
-import { AddPhotoAlternateSharp } from "@mui/icons-material";
-
-const note = {
-  id: '',
-  title: '',
-  text: ''
-};
 
 const TextForm = () => {
-
   const [showTextField, setShowTextField] = useState(false);
-  const [addNote, setAddNote] = useState({...note, id: uuid()});
-  const {setNotes} = useContext(DataContext);
+  const [addNote, setAddNote] = useState({ title: '', text: '' });
+  const { addNote: addNoteToDB } = useContext(DataContext);
   const containerRef = useRef();
 
-  const handleClickAway = () => {
+  const handleClickAway = async () => {
     setShowTextField(false);
     containerRef.current.style.minHeight = "25px";
-    setAddNote({ ...note, id: uuid()})
 
-    if(addNote.title || addNote.text)
-    {
-      setNotes(preArr => [addNote, ...preArr]);
+    if (addNote.title || addNote.text) {
+      await addNoteToDB(addNote);
+      setAddNote({ title: '', text: '' });
     }
   };
 
@@ -36,8 +26,7 @@ const TextForm = () => {
 
   const ontextChange = (e) => {
     const { name, value } = e.target;
-    let changedNote = {...addNote, [name]: value};
-    setAddNote(changedNote);
+    setAddNote(prevNote => ({ ...prevNote, [name]: value }));
   };
 
   return (
@@ -53,12 +42,11 @@ const TextForm = () => {
             variant="standard"
             InputProps={{ disableUnderline: true }}
             style={{ marginBottom: 10 }}
-            onChange={ (e) => ontextChange(e) }
+            onChange={ontextChange}
             name="title"
             value={addNote.title}
           />
         )}
-
         <TextField
           className="textfield"
           placeholder="Take a note..."
@@ -67,7 +55,7 @@ const TextForm = () => {
           variant="standard"
           InputProps={{ disableUnderline: true }}
           onClick={onTextAreaClick}
-          onChange={ (e) => ontextChange(e) }
+          onChange={ontextChange}
           name="text"
           value={addNote.text}
         />
