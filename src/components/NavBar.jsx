@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import "../css/navbar.css";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
@@ -11,6 +11,7 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import ClearIcon from "@mui/icons-material/Clear";
 import { signOut, auth } from "../firebase";
+import Notes from "./notes/Notes";
 
 const NavBar = ({ handleSidebarToggle }) => {
   const [isSearchBarVisible, setIsSearchBarVisible] = useState(true);
@@ -67,7 +68,9 @@ const NavBar = ({ handleSidebarToggle }) => {
       </div>
 
       <div className="logo">
-        <p>LOGO</p>
+        <Link to="/">
+          <img src = "JamNotes.png" />
+        </Link>
       </div>
 
       {isSearchBarVisible ? (

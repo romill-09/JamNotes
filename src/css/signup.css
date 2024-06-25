@@ -1,21 +1,45 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  max-height: 100dvh;
+  overflow: hidden;
+}
+
 .signup-container {
   display: flex;
   flex-direction: column;
-  place-items: center;
+  align-items: center;
   justify-content: center;
+  margin-top: 50px;
   gap: 100px;
-  margin-top: 200px;
+  padding: 20px;
+  max-width: 100%;
 }
 
-.logo {
-   object-fit: cover;
-   text-align: center;
-   padding: 1.5em;
-   will-change: filter;
-   transition: filter 300ms;
- }
+.signUplogo {
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
- button {
+.signUplogo img {
+  max-width: 100%;
+  max-height: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+button {
   border-radius: 100px;
   border: 1px solid transparent;
   padding: 0.6em 1.2em;

@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect } from 'react';
-import { collection, addDoc, getDocs, updateDoc, deleteDoc, doc, onSnapshot, query } from "firebase/firestore";
+import { auth, onAuthStateChanged, collection, addDoc, getDocs, updateDoc, deleteDoc, doc, onSnapshot, query, where } from "../firebase";
 import { db } from "../firebase"; // adjust the path as necessary
 
 export const DataContext = createContext(null);
@@ -11,32 +11,52 @@ const DataProvider = ({ children }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [currentNote, setCurrentNote] = useState(null);
+  const [load, setLoad] = useState(true);
+  const user = auth.currentUser;
 
   useEffect(() => {
-    const q = query(collection(db, "notes"));
-    const unsubscribe = onSnapshot(q, (querySnapshot) => {
-      const notesData = [];
-      const archiveData = [];
-      const deletedData = [];
-      querySnapshot.forEach((doc) => {
-        const note = { ...doc.data(), id: doc.id };
-        if (note.isArchived) {
-          archiveData.push(note);
-        } else if (note.isDeleted) {
-          deletedData.push(note);
-        } else {
-          notesData.push(note);
-        }
-      });
-      setNotes(notesData);
-      setArchiveNotes(archiveData);
-      setDeletedNotes(deletedData);
+    const unsubscribeAuth = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const notesRef = collection(db, "notes");
+        const q = query(notesRef, where("uid", "==", user.uid));
+        const unsubscribe = onSnapshot(q, (querySnapshot) => {
+          const notesData = [];
+          const archiveData = [];
+          const deletedData = [];
+          querySnapshot.forEach((doc) => {
+            const note = { ...doc.data(), id: doc.id };
+            if (note.isArchived) {
+              archiveData.push(note);
+            } else if (note.isDeleted) {
+              deletedData.push(note);
+            } else {
+              notesData.push(note);
+            }
+          });
+          setTimeout(() => {
+            setNotes(notesData);
+            setArchiveNotes(archiveData);
+            setDeletedNotes(deletedData);
+            setLoad(false);
+          }, 2000);
+        });
+        return () => unsubscribe();
+      } else {
+        // Clear notes state when no user is authenticated
+        setNotes([]);
+        setArchiveNotes([]);
+        setDeletedNotes([]);
+      }
     });
-    return () => unsubscribe();
-  }, []);
+    return () => unsubscribeAuth();
+  }, [auth]);
 
   const addNote = async (note) => {
-    await addDoc(collection(db, "notes"), note);
+    if (user) {
+      await addDoc(collection(db, "notes"), { ...note, uid: user.uid });
+    } else {
+      console.error("User is not authenticated.");
+    }
   };
 
   const updateNote = async (id, updatedNote) => {
@@ -81,7 +101,7 @@ const DataProvider = ({ children }) => {
         unarchiveNote, restoreNoteFromTrash, deleteNoteForever,
         editNote, handleEditModalClose
     }}>
-      { children }
+      {children}
     </DataContext.Provider>
   );
 }

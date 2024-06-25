@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from "react-router-dom";
 import "../css/signup.css";
 import { signInWithPopup } from "firebase/auth";
 import { auth, provider } from "../firebase";
@@ -10,8 +10,8 @@ const SignUp = () => {
     try {
       const result = await signInWithPopup(auth, provider);
       const user = result.user;
-      console.log("User logged in successfully", user);
-      navigate('/');
+      console.log("User logged in successfully");
+      navigate("/");
     } catch (error) {
       console.error("Error during sign-in:", error.message);
     }
@@ -19,9 +19,12 @@ const SignUp = () => {
 
   return (
     <div className="signup-container">
-      <div className="logo">
-        LOGO
-      </div>
+      <Link to="/signup">
+        <div className="signUplogo">
+          <img src="jamNotes.png" alt="Logo" />
+        </div>
+      </Link>
+
       <div className="bt">
         <button onClick={logGoogleUser}>Sign In With Google</button>
       </div>

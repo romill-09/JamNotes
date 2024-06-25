@@ -3,12 +3,12 @@ import TextForm from "../TextForm";
 import Note from "./Note";
 import EmptyNotes from "./EmptyNotes";
 import { DataContext } from "../../context/DataProvider";
-import { Grid } from "@mui/material";
+import { Grid, CircularProgress } from "@mui/material";
 import NotFoundNote from "../NotFoundNote";
 import "../../css/notes.css";
 
 const Notes = () => {
-  const { notes, searchQuery } = useContext(DataContext);
+  const { notes, searchQuery, load } = useContext(DataContext);
   
   const filteredNotes = notes.filter(note =>
     (note.title && note.title.toLowerCase().includes(searchQuery.toLowerCase())) ||
@@ -23,7 +23,11 @@ const Notes = () => {
         <TextForm />
       </div>
 
-      {isInvalidSearch ? (
+      {load ? (
+        <div className="loading-spinner">
+          <CircularProgress />
+        </div>
+      ) : isInvalidSearch ? (
         <NotFoundNote />
       ) : notes.length > 0 ? (
         <div className="note-items">

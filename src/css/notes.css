@@ -15,6 +15,16 @@
    margin-left: 0px;
  }
  
+ .loading-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto; /* Remove fixed margin */
+  margin-top: 20px; /* Smaller top margin for better visibility */
+  color: #1976d2; /* Darker color for light backgrounds */
+  z-index: 10000;
+}
+
  @media (max-width: 768px) {
    .text-wrapper {
     max-width: 200px;

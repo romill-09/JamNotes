@@ -52,7 +52,6 @@
 .listview:hover,
 .settings:hover,
 .logout:hover,
-.logo:hover,
 .profile:hover,
 .search-icon:hover {
   background: linear-gradient(
@@ -75,7 +74,16 @@
   margin: 0 10px;
   cursor: pointer;
   width: 100px;
+  height: 50px;
 }
+
+.logo img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+}
+
 
 .icons1 {
   display: flex;

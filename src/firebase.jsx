@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, GoogleAuthProvider, signOut } from "firebase/auth";
+import { getAuth, GoogleAuthProvider, signOut, onAuthStateChanged } from "firebase/auth";
 import {
   getFirestore,
   collection,
@@ -10,6 +10,7 @@ import {
   doc,
   onSnapshot,
   query,
+  where
 } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -30,6 +31,7 @@ export {
   auth,
   db,
   provider,
+  onAuthStateChanged,
   signOut,
   collection,
   addDoc,
@@ -39,4 +41,5 @@ export {
   doc,
   onSnapshot,
   query,
+  where
 };
