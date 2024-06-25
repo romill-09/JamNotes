@@ -21,7 +21,7 @@ const SignUp = () => {
     <div className="signup-container">
       <Link to="/signup">
         <div className="signUplogo">
-          <img src="jamNotes.png" alt="Logo" />
+          <img src="JamNotes.png" alt="Logo" />
         </div>
       </Link>
 
