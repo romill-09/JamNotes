@@ -1,6 +1,19 @@
-import { createContext, useState, useEffect } from 'react';
-import { auth, onAuthStateChanged, collection, addDoc, getDocs, updateDoc, deleteDoc, doc, onSnapshot, query, where } from "../firebase";
-import { db } from "../firebase"; // adjust the path as necessary
+import { createContext, useState, useEffect } from "react";
+import {
+  auth,
+  onAuthStateChanged,
+  collection,
+  addDoc,
+  updateDoc,
+  deleteDoc,
+  doc,
+  onSnapshot,
+  query,
+  where,
+  orderBy,
+  serverTimestamp
+} from "../firebase";
+import { db } from "../firebase";
 
 export const DataContext = createContext(null);
 
@@ -18,7 +31,7 @@ const DataProvider = ({ children }) => {
     const unsubscribeAuth = onAuthStateChanged(auth, (user) => {
       if (user) {
         const notesRef = collection(db, "notes");
-        const q = query(notesRef, where("uid", "==", user.uid));
+        const q = query(notesRef, where("uid", "==", user.uid), orderBy("createdAt", "desc"));
         const unsubscribe = onSnapshot(q, (querySnapshot) => {
           const notesData = [];
           const archiveData = [];
@@ -53,7 +66,7 @@ const DataProvider = ({ children }) => {
 
   const addNote = async (note) => {
     if (user) {
-      await addDoc(collection(db, "notes"), { ...note, uid: user.uid });
+      await addDoc(collection(db, "notes"), { ...note, uid: user.uid, createdAt: serverTimestamp() });
     } else {
       console.error("User is not authenticated.");
     }
@@ -64,7 +77,10 @@ const DataProvider = ({ children }) => {
   };
 
   const deleteNote = async (id) => {
-    await updateDoc(doc(db, "notes", id), { isArchived: false, isDeleted: true });
+    await updateDoc(doc(db, "notes", id), {
+      isArchived: false,
+      isDeleted: true,
+    });
   };
 
   const unarchiveNote = async (id) => {
@@ -89,21 +105,43 @@ const DataProvider = ({ children }) => {
     setCurrentNote(null);
   };
 
+  function replaceNewlinesWithBrTags(inputString) {
+    return inputString.replace(/\n/g, "<br>");
+  }
+
   return (
-    <DataContext.Provider value={{
-        notes, setNotes,
-        archiveNotes, setArchiveNotes,
-        deletedNotes, setDeletedNotes,
-        searchQuery, setSearchQuery,
-        isEditModalOpen, setIsEditModalOpen,
-        currentNote, setCurrentNote,
-        addNote, updateNote, deleteNote,
-        unarchiveNote, restoreNoteFromTrash, deleteNoteForever,
-        editNote, handleEditModalClose
-    }}>
+    <DataContext.Provider
+      value={{
+        notes,
+        setNotes,
+        archiveNotes,
+        setArchiveNotes,
+        deletedNotes,
+        setDeletedNotes,
+        searchQuery,
+        setSearchQuery,
+        isEditModalOpen,
+        setIsEditModalOpen,
+        currentNote,
+        setCurrentNote,
+        addNote,
+        updateNote,
+        deleteNote,
+        unarchiveNote,
+        restoreNoteFromTrash,
+        deleteNoteForever,
+        editNote,
+        handleEditModalClose,
+        replaceNewlinesWithBrTags,
+        load,
+        setLoad,
+        user,
+        setLoad
+      }}
+    >
       {children}
     </DataContext.Provider>
   );
-}
+};
 
 export default DataProvider;

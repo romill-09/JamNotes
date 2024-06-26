@@ -2,7 +2,7 @@ import { Card, CardContent, CardActions, Typography } from "@mui/material";
 import {
   ArchiveOutlined as Archive,
   DeleteOutlineOutlined as Delete,
-  EditOutlined as Edit
+  EditOutlined as Edit,
 } from "@mui/icons-material";
 import { useContext } from "react";
 import { DataContext } from "../../context/DataProvider";
@@ -10,7 +10,14 @@ import EditNoteModal from "../EditNoteModal";
 import "../../css/note.css";
 
 const Note = ({ note }) => {
-  const { deleteNote, editNote, updateNote, isEditModalOpen, handleEditModalClose } = useContext(DataContext);
+  const {
+    deleteNote,
+    editNote,
+    updateNote,
+    isEditModalOpen,
+    handleEditModalClose,
+    replaceNewlinesWithBrTags,
+  } = useContext(DataContext);
 
   const archiveNote = async (note) => {
     await updateNote(note.id, { ...note, isArchived: true });
@@ -21,14 +28,18 @@ const Note = ({ note }) => {
       <Card className="card-style">
         <CardContent>
           <Typography className="title">{note.title}</Typography>
-          <Typography className="text">{note.text}</Typography>
+          <Typography className="text">
+            <div
+              className="text"
+              dangerouslySetInnerHTML={{
+                __html: replaceNewlinesWithBrTags(note.text),
+              }}
+            />{" "}
+          </Typography>
         </CardContent>
 
         <CardActions className="cardicons">
-          <Edit
-            style={{ cursor: "pointer" }}
-            onClick={() => editNote(note)}
-          />
+          <Edit style={{ cursor: "pointer" }} onClick={() => editNote(note)} />
           <Archive
             style={{ cursor: "pointer" }}
             onClick={() => archiveNote(note)}
@@ -39,7 +50,7 @@ const Note = ({ note }) => {
           />
         </CardActions>
       </Card>
-      
+
       <EditNoteModal
         open={isEditModalOpen}
         handleClose={handleEditModalClose}

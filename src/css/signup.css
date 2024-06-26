@@ -10,7 +10,6 @@ html, body {
 
 body {
   max-height: 100dvh;
-  overflow: hidden;
 }
 
 .signup-container {
